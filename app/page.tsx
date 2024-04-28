@@ -1,10 +1,22 @@
+"use client"
 import Image from "next/image";
+import React, { useState } from 'react';
 
 export default function Home() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsSidebarOpen(!isSidebarOpen);
+  };
   return (
     <main className="bg-[#f7f9fb] h-screen w-full flex flex-row">
+
+      {/* Toggle button for mobile */}
+
+
       {/* Siderbar */}
-      <div className="bg-white h-screen w-[237px] flex flex-col justify-between p-10">
+
+      <div className={`bg-white h-screen w-[237px] flex flex-col justify-between p-10 ${isSidebarOpen ? 'block' : 'hidden'}`}>
         <Image src="/PsycheFinance-031.png" width={162} height={41} alt="logo" className="cursor-pointer" />
         <div className="bg-gray-200 border-2xl w-[170px] h-[48px] relative top-[-100px]"></div>
         {/* Icons list  */}
@@ -42,6 +54,12 @@ export default function Home() {
       <div className="w-full overflow-y-scroll">
         {/* Navbar */}
         <div className="flex flex-row justify-between items-center align-middle bg-white p-2 h-[77px]">
+          <button
+            className="bg-gradient-to-r from-purple-900 to-purple-300  text-white px-4 text-[12px] font-Aeonik-Light py-2 rounded-full shadow-lg z-10 "
+            onClick={toggleSidebar}
+          >
+            {isSidebarOpen ? 'Hide Sidebar' : 'Show Sidebar'}
+          </button>
           <div className="font-Aeonik-Light ml-5 text-gray-600">Dashboard</div>
           <div className="flex flex-row justify-evenly align-baseline items-center mr-6">
             <div className="w-[45px] h-[45px] rounded-[50%] bg-[#EBEDF0] flex flex-row items-center justify-center">
@@ -57,7 +75,7 @@ export default function Home() {
             <p className="font-Aeonik-Light text-gray-800">Hi Boluwatife</p>
             <Image src="/emoji _smilingfacewith sunglasses_.png" width={24} height={24} alt="logo" className="ml-5" />
           </span>
-          <div className="w-[997px] h-[147px] bg-[#FCEABB] mt-10 border-t-[3px] border-[#E5AE40] p-4">
+          <div className="w-[80vw] md:w-[997px] h-[250px] md:h-[147px] bg-[#FCEABB] mt-10 border-t-[3px] border-[#E5AE40] p-4">
             <p className="text-black font-Aeonik-Bold">Complete your Account Verification</p>
             <p className="text-black font-Aeonik-Light mt-3">Verify your Account by submitting a valid ID Card and BVN to access all our features and protect </p>
             <p className="text-black font-Aeonik-Light ">your account.</p>
@@ -66,7 +84,7 @@ export default function Home() {
                 <Image src="/tick-circle.png" width={24} height={24} alt="logo" className="ml-5" />
                 <p className="text-black font-Aeonik-Regular ml-3">Bank Verification Number (BVN)</p>
               </div>
-              <div className="bg-black w-[40px] h-[1px] ml-5"></div>
+              <div className="bg-black w-[40px] h-[1px] ml-5 hidden md:block lg:block"></div>
               <div className="flex flex-row justify-evenly items-center text-gray-200 font-Aeonik-Regular">
                 <Image src="/tick-circle.png" width={24} height={24} alt="logo" className="ml-5" />
                 <p className="text-black font-Aeonik-Regular ml-3">Valid Identification card</p>
@@ -74,7 +92,7 @@ export default function Home() {
             </span>
           </div>
 
-          <div className="flex flex-row justify-start gap-[60px] mt-[60px] items-center align-middle">
+          <div className="flex flex-col lg:flex-row md:flex-row justify-start gap-[60px] mt-[60px] items-center align-middle">
             <div className="w-[400px] h-[182px] flex flex-row justify-between items-start bg-gradient-to-r from-blue-900 to-blue-300 rounded-2xl py-8 px-5 ">
               <div>
                 <p className="font-Aeonik-Bold text-white text-[32px]">N 0.00</p>
@@ -93,7 +111,7 @@ export default function Home() {
 
           <div className="flex flex-col mt-[40px]">
             <p className="text-black font-Aeonik-Bold">Quick Access</p>
-            <div className="flex flex-row mt-4 gap-5">
+            <div className="flex flex-row mt-4 gap-5 flex-wrap">
               <div className="bg-white w-[147px] h-[48px] rounded-sm cursor-pointer p-2 shadow-xl shadow-gray-200"></div>
               <div className="bg-white w-[147px] h-[48px] rounded-sm flex flex-row items-center cursor-pointer p-2  shadow-xl shadow-gray-200">
                 <Image src="/add-circle.svg" width={20} height={20} alt="logo" className="w-[25px] h-[25px]" />
@@ -249,6 +267,8 @@ export default function Home() {
 
         </div>
       </div>
+
+
     </main>
   );
 }
